@@ -16,3 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('layout.index');
 });
+
+Route::get('/master/department', 'DepartmentController@index')->name('department.index');
+
+Route::get('/master/position', 'PositionController@index')->name('position.index');
+
+Route::get('/master/employee', 'EmployeeController@index')->name('employee.index');
