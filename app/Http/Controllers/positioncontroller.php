@@ -14,4 +14,29 @@ class positioncontroller extends Controller
         ->get();
         return view('master.position', ['positions' => $positions]);
     }
+
+    public function store(Request $request)
+    {
+        DB::table('positions')->insert([
+            'name' => $request->name,
+            'salary' => $request->salary
+        ]);
+        return redirect()->route('position.index')->with('success', 'Position created successfully.');
+    }
+
+    public function update(Request $request, $id)
+    {
+        DB::table('positions')->where('id', $id)->update([
+            'name' => $request->name,
+            'salary' => $request->salary
+        ]);
+        return redirect()->route('position.index')->with('success', 'Position updated successfully.');
+    }
+
+    public function destroy($id)
+    {
+        DB::table('positions')->where('id', $id)->delete();
+        return redirect()->route('position.index')
+            ->with('success', 'Position deleted successfully.');
+    }
 }

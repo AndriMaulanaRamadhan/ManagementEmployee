@@ -22,14 +22,15 @@
     <!-- End layout styles -->
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png')}}" />
     <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   </head>
   <body>
     <div class="container-scroller">
       <!-- partial:partials/_navbar.html -->
       <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
-          <a class="navbar-brand brand-logo" href="index.html"><img src="assets/images/logo.svg" alt="logo" /></a>
-          <a class="navbar-brand brand-logo-mini" href="index.html"><img src="assets/images/logo-mini.svg" alt="logo" /></a>
+          <a class="navbar-brand brand-logo" href="#"><img src="{{ asset('assets/images/logo.svg') }} " alt="logo" /></a>
+          <a class="navbar-brand brand-logo-mini" href="#"><img src="{{ asset('assets/images/logo-mini.svg') }}" alt="logo" /></a>
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-stretch">
           <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -49,7 +50,7 @@
             <li class="nav-item nav-profile dropdown">
               <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
                 <div class="nav-profile-img">
-                  <img src="assets/images/faces/face1.jpg" alt="image">
+                  <img src="{{ asset('assets/images/faces/face1.jpg') }}" alt="image">
                   <span class="availability-status online"></span>
                 </div>
                 <div class="nav-profile-text">
@@ -91,34 +92,37 @@
                 <i class="mdi mdi-home menu-icon"></i>
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+<li class="nav-item">
+  <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic"
+     aria-expanded="{{ request()->is('master/*') ? 'true' : 'false' }}">
                 <span class="menu-title">Master</span>
                 <i class="menu-arrow"></i>
                 <i class="mdi mdi-crosshairs-gps menu-icon"></i>
               </a>
 
-              <div class="collapse" id="ui-basic">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/master/department') }}">Departments</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="{{ url('master/position') }}">Position</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="{{ url('master/employee') }}">Employee</a>
-                  </li>
-                </ul>
-              </div>
-            </li>
-            <li class="nav-item">
-              <div class="collapse" id="icons">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item">
-                    <a class="nav-link" href="pages/icons/font-awesome.html">Font Awesome</a>
-                  </li>
-                </ul>
+<div class="collapse {{ request()->is('master/*') ? 'show' : '' }}" id="ui-basic">
+<ul class="nav flex-column sub-menu">
+  <li class="nav-item">
+    <a class="nav-link {{ request()->is('master/department*') ? 'active' : '' }}"
+       href="{{ url('/master/department') }}">
+       Departments
+    </a>
+  </li>
+
+  <li class="nav-item">
+    <a class="nav-link {{ request()->is('master/position*') ? 'active' : '' }}"
+       href="{{ url('/master/position') }}">
+       Position
+    </a>
+  </li>
+
+  <li class="nav-item">
+    <a class="nav-link {{ request()->is('master/employee*') ? 'active' : '' }}"
+       href="{{ url('/master/employee') }}">
+       Employee
+    </a>
+  </li>
+</ul>
               </div>
             </li>
           </ul>
@@ -138,22 +142,21 @@
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
-    <script src="assets/vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->
-    <script src="assets/vendors/chart.js/chart.umd.js"></script>
-    <script src="assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+    <script src="{{ asset('assets/vendors/chart.js/chart.umd.js') }}"></script>
+    <script src="{{ asset('assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js') }}"></script>
     <!-- End plugin js for this page -->
     <!-- inject:js -->
-    <script src="assets/js/off-canvas.js"></script>
-    <script src="assets/js/misc.js"></script>
-    <script src="assets/js/settings.js"></script>
-    <script src="assets/js/todolist.js"></script>
-    <script src="assets/js/jquery.cookie.js"></script>
+    <script src="{{ asset('assets/js/off-canvas.js') }}"></script>
+    <script src="{{ asset('assets/js/misc.js') }}"></script>
+    <script src="{{ asset('assets/js/settings.js') }}"></script>
+    <script src="{{ asset('assets/js/todolist.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.cookie.js') }}"></script>
     <!-- endinject -->
     <!-- Custom js for this page -->
-    <script src="assets/js/dashboard.js"></script>
+    <script src="{{ asset('assets/js/dashboard.js') }}"></script>
     <!-- End custom js for this page -->
-    <script src="{{ asset('assets/js/bootstrap.min.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

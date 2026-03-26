@@ -17,10 +17,10 @@
     </div>
 
     <!-- ===================== MODAL ADD ===================== -->
-    <div class="modal fade" id="addModal" tabindex="-1">
+    <div class="modal fade" id="addModal" tabindex="-1" data-bs-backdrop="static">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form action="{{ url('/position/store') }}" method="POST">
+                <form action="{{ route('position.store') }}" method="POST">
                     @csrf
 
                     <div class="modal-header">
@@ -30,11 +30,12 @@
 
                     <div class="modal-body">
                         <input type="text" name="name" class="form-control" placeholder="Position Name">
+                        <input type="text" name="salary" class="form-control mt-2" placeholder="Salary">
                     </div>
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="submit" class="btn btn-success">Save</button>
                     </div>
 
                 </form>
@@ -77,10 +78,10 @@
             </tr>
 
             <!-- ===================== MODAL EDIT ===================== -->
-            <div class="modal fade" id="edit{{ $position->id }}" tabindex="-1">
+            <div class="modal fade" id="edit{{ $position->id }}" tabindex="-1" data-bs-backdrop="static">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <form action="{{ url('/position/update/'.$position->id) }}" method="POST">
+                        <form action="{{ route('position.update', $position->id)}}" method="POST">
                             @csrf
                             @method('PUT')
 
@@ -92,15 +93,13 @@
                             <div class="modal-body">
                                 <input type="text" name="name" class="form-control"
                                     value="{{ $position->name }}">
-                            </div>
-                            <div class="modal-body">
-                                <input type="text" name="salary" class="form-control"
+                                <input type="text" name="salary" class="form-control mt-2"
                                     value="{{ $position->salary }}">
                             </div>
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Save</button>
+                                <button type="submit" class="btn btn-success">Save</button>
                             </div>
 
                         </form>
@@ -111,10 +110,10 @@
 
 
             <!-- ===================== MODAL DELETE ===================== -->
-            <div class="modal fade" id="delete{{ $position->id }}" tabindex="-1">
+            <div class="modal fade" id="delete{{ $position->id }}" tabindex="-1" data-bs-backdrop="static">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <form action="{{ url('/department/delete/'.$position->id) }}" method="POST">
+                        <form action="{{ route('position.destroy', $position->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
 
@@ -124,7 +123,7 @@
                             </div>
 
                             <div class="modal-body">
-                                Yakin hapus <b>{{ $position->name }}</b>?
+                                Are You Sure Delete? <b>{{ $position->name }}</b>?
                             </div>
 
                             <div class="modal-footer">

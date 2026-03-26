@@ -17,10 +17,10 @@
     </div>
 
     <!-- ===================== MODAL ADD ===================== -->
-    <div class="modal fade" id="addModal" tabindex="-1">
+    <div class="modal fade" id="addModal" tabindex="-1" data-bs-backdrop="static">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form action="{{ url('/department/store') }}" method="POST">
+                <form action="{{ route('department.store') }}" method="POST">
                     @csrf
 
                     <div class="modal-header">
@@ -34,7 +34,7 @@
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="submit" class="btn btn-success">Save</button>
                     </div>
 
                 </form>
@@ -75,10 +75,10 @@
             </tr>
 
             <!-- ===================== MODAL EDIT ===================== -->
-            <div class="modal fade" id="edit{{ $department->id }}" tabindex="-1">
+            <div class="modal fade" id="edit{{ $department->id }}" tabindex="-1" data-bs-backdrop="static">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <form action="{{ url('/department/update/'.$department->id) }}" method="POST">
+                        <form action="{{ route('department.update', $department->id) }}" method="POST">
                             @csrf
                             @method('PUT')
 
@@ -89,12 +89,12 @@
 
                             <div class="modal-body">
                                 <input type="text" name="name" class="form-control"
-                                    value="{{ $department->name }}">
+                                    value="{{ $department->name }}" id="name" placeholder="Department Name">
                             </div>
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Save</button>
+                                <button type="submit" class="btn btn-success">Save</button>
                             </div>
 
                         </form>
@@ -105,10 +105,10 @@
 
 
             <!-- ===================== MODAL DELETE ===================== -->
-            <div class="modal fade" id="delete{{ $department->id }}" tabindex="-1">
+            <div class="modal fade" id="delete{{ $department->id }}" tabindex="-1" data-bs-backdrop="static">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <form action="{{ url('/department/delete/'.$department->id) }}" method="POST">
+                        <form action="{{ route('department.destroy', $department->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
 
@@ -118,7 +118,7 @@
                             </div>
 
                             <div class="modal-body">
-                                Yakin hapus <b>{{ $department->name }}</b>?
+                                Are You Sure Delete? <b>{{ $department->name }}</b>?
                             </div>
 
                             <div class="modal-footer">
